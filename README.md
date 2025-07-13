@@ -6,7 +6,7 @@ LOON is ideal for configuration files, intermediate data representations, and to
 
 ---
 
-## 📦 Key Features
+## 💡 Key Features
 
 - 🧱 **Label-based structure**: Organized via uniquely named blocks.
 - 🧩 **Spaces**: Subsections within labels for encapsulated data.
@@ -19,7 +19,7 @@ LOON is ideal for configuration files, intermediate data representations, and to
 
 ---
 
-📦 Installation
+## 📦 Installation
 
 You can install the LOON parser directly from source or use pip to install it locally.
 
@@ -33,7 +33,7 @@ This will install loon as a CLI tool globally, allowing you to run it from anywh
 
 loon path/to/file.loon
 
-💡 Option 2: Install in editable (development) mode
+🔧 Option 2: Install in editable (development) mode
 
 If you're actively developing LOON and want changes to reflect immediately:
 
@@ -46,7 +46,7 @@ This installs the project in "editable" mode. Any edits to the source code will 
 
 ---
 
-## 🔧 Basic Syntax
+## 🧑‍💻 Basic Syntax
 
 ### 🔸 Labels
 
@@ -59,7 +59,7 @@ Labels are defined using parentheses and represent top-level named blocks:
 end
 ```
 
-🔹 Spaces
+### 🔹 Spaces
 
 Spaces are sub-containers defined using :spaceName inside labels or other spaces:
 ```loon
