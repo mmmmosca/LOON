@@ -185,16 +185,6 @@ end
 }
 ```
 
----
-
-🔄 CLI Usage Example
-
-If you use the provided LOON parser (written in Python), you can run:
-
-python3 loon_parser.py input.loon output.json
-
-This will transpile a .loon file into a JSON structure.
-
 
 ---
 
