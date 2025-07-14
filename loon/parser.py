@@ -1,116 +1,137 @@
+import json
+
+def infer_value_type(value: str):
+    value = value.strip()
+    if (value.startswith('"') and value.endswith('"')) or (value.startswith("'") and value.endswith("'")):
+        return value[1:-1]
+    elif value.lower() == "true":
+        return True
+    elif value.lower() == "false":
+        return False
+    else:
+        try:
+            return float(value) if '.' in value else int(value)
+        except ValueError:
+            return value
+
 def parse_loon_file(filename):
-	labels: dict[str, list] = {}
-	spaces: dict[str, list] = {}
-	label_block = []
-	space_block = []
-	any_space = False
-	insert_in_space = False
-	label_name = ""
-	space_name = ""
-	code = []
-	
-	with open(filename, "r") as file:
-		if ".loon" in filename:
-			for line in file:
-				line = line.strip()
-				code.append(line)
-		elif not filename:
-			print("ERROR: must insert input LOON file")
-			exit()
-		else:
-			print("ERROR: invalid input file type, must be LOON")
-			exit()
-			
-	for line in code:
-		line = line.strip()
-		if line.startswith("(") and line.endswith(")"):
-			if label_name:
-				print("ERROR: can't insert a label inside a label!")
-				exit()
-			label_name = line.strip("()")
-			label_block = []  # Reset block for new label
-		elif line.startswith(":"):
-			line = line.strip()
-			if insert_in_space:
-				print("ERROR: can't insert a space inside a space!")
-				exit()
-			any_space = True
-			insert_in_space = True
-			space_name = line[1:]
-			space_block = []
-		elif line == "end:":
-			insert_in_space = False
-			label_block.append({space_name : space_block})
-			spaces[space_name] = space_block
-			space_name = ""
-			space_block = []
-		elif line == "end":
-			labels[label_name] = label_block
-			label_block = []
-			label_name = ""
-		elif line.startswith("->"):
-			if ":" in line:
-				if line.endswith("&"):
-					label, space = line.split(':')
-					label = label[2:].strip()
-					space = space[:-1].strip()
-					if label in labels:
-						if space in spaces:
-							if insert_in_space:
-								space_block.extend(spaces[space])
-							else:
-								label_block.extend(spaces[space])
-						else:
-							print(f"ERROR: the space '{space}' does not exist")
-							exit()
-				
-					else:
-						print(f"ERROR: the label '{label}' does not exist")
-						exit()
-				else:
-					label, space = line.split(':')
-					label = label[2:].strip()
-					space = space.strip()
-					space_content = spaces[space]
-					if label in labels:
-						if space in spaces:
-							if insert_in_space:
-								space_block.append({space : space_content})
-							else:
-								label_block.append({space : space_content})
-						else:
-							print(f"ERROR: the space '{space}' does not exist")
-							exit()
-					else:
-						print(f"ERROR: the label '{label}' does not exist")
-						exit()
-			else:
-				if line.endswith("&"):
-					label = line[2:-1].strip()
-					label_content = labels[label]
-					if label in labels:
-						if insert_in_space:
-							space_block.extend(label_content)
-						else:
-							label_block.extend(label_content)
-					else:
-						print(f"ERROR: the label '{label}' does not exist")
-						exit()
-				else:
-					label = line[2:].strip()
-					label_content = labels[label]
-					if label in labels:
-						if insert_in_space:
-							print(f"ERROR: can't inject label inside space {space_name}")
-							exit()
-						else:
-							label_block.append({label : label_content})
-					
-		elif not line or line.startswith("<") and line.endswith(">"):
-			continue
-		else:
-			if insert_in_space:
-				space_block.append(line)
-			else:
-				label_block.append(line)
-	return labels
+    with open(filename, "r") as file:
+        if not filename.endswith(".loon"):
+            print("ERROR: file must be a .loon file")
+            exit()
+        code = [line.strip() for line in file if line.strip() and not line.strip().startswith("<")]
+
+    labels = {}
+    spaces = {}
+    current_label = None
+    current_space = None
+    label_stack = {}   # label_name → list of (space_name, block) or dict entries
+    space_stack = {}   # space_name → block (dict or list)
+    insert_in_space = False
+
+    for line in code:
+        if line.startswith("(") and line.endswith(")"):
+            current_label = line[1:-1]
+            label_stack[current_label] = []
+            current_space = None
+            insert_in_space = False
+
+        elif line.startswith(":"):
+            current_space = line[1:]
+            space_stack[current_space] = None  # Undecided
+            insert_in_space = True
+
+        elif line == "end:":
+            result = space_stack[current_space]
+            label_stack[current_label].append((current_space, result))
+            spaces[current_space] = result
+            insert_in_space = False
+            current_space = None
+
+        elif line == "end":
+            result = {}
+            for item in label_stack[current_label]:
+                if isinstance(item, tuple):
+                    key, val = item
+                    result[key] = val
+                elif isinstance(item, dict):
+                    result.update(item)
+            labels[current_label] = result
+            current_label = None
+
+        elif "<->" in line:
+            k, v = map(str.strip, line.split("<->", 1))
+            val = infer_value_type(v)
+            if insert_in_space:
+                blk = space_stack[current_space]
+                if blk is None:
+                    blk = {}
+                    space_stack[current_space] = blk
+                elif isinstance(blk, list):
+                    raise Exception(f"Cannot mix key-value with list in space '{current_space}'")
+                blk[k] = val
+            else:
+                label_stack[current_label].append({k: val})
+
+        elif not line.startswith("->"):
+            val = infer_value_type(line)
+            if insert_in_space:
+                blk = space_stack[current_space]
+                if blk is None:
+                    blk = []
+                    space_stack[current_space] = blk
+                elif isinstance(blk, dict):
+                    # Convert dict to list of single-entry dicts
+                    blk = [{k: v} for k, v in blk.items()]
+                    space_stack[current_space] = blk
+                blk.append(val)
+            else:
+                label_stack[current_label].append(val)
+
+        elif line.startswith("->"):
+            raw = line[2:].strip()
+            is_value_only = raw.endswith("&")
+            if is_value_only:
+                raw = raw[:-1].strip()
+
+            # Determine the injected data
+            if "." in raw:
+                scope, identity = raw.split(".", 1)
+                if ":" in scope:
+                    lbl, sp = scope.split(":",1)
+                    data = labels[lbl][sp]
+                else:
+                    data = labels[scope]
+                val = data.get(identity)
+                injected = val if is_value_only else {identity: val}
+
+            elif ":" in raw:
+                lbl, sp = raw.split(":", 1)
+                data = labels[lbl][sp]
+                injected = data if is_value_only else {sp: data}
+
+            else:
+                data = labels[raw]
+                injected = data if is_value_only else {raw: data}
+
+            if insert_in_space:
+                blk = space_stack[current_space]
+                if is_value_only:
+                    if blk is None:
+                        blk = []
+                        space_stack[current_space] = blk
+                    elif isinstance(blk, dict):
+                        blk = [{k: v} for k, v in blk.items()]
+                        space_stack[current_space] = blk
+                    blk.append(injected)
+                else:
+                    if blk is None:
+                        blk = {}
+                        space_stack[current_space] = blk
+                    elif isinstance(blk, list):
+                        raise Exception(f"Cannot mix structured injection with list in space '{current_space}'")
+                    blk.update(injected)
+            else:
+                label_stack[current_label].append(injected)
+
+    return labels
