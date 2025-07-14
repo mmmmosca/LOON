@@ -37,3 +37,6 @@ Identities can be accessed in these ways:
 - `->Label:space.key` (or for accessing only the value: `->Label:space.key&`)
 
 Also i made sure to add type checking, so that everything doesn't come as a string.
+
+Fun fact:
+the syntax of the injection operator (`<->`) was inspired by the chemical notation for reversible reactions
