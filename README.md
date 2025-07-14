@@ -5,10 +5,7 @@ An identity is the LOON way to make key value pairs.
 The syntax of an identity is as following:
 
 
-```
-key <-> value
-
-```
+`key <-> value`
 
 This `<->` is called the "identity operator".
 
@@ -22,8 +19,19 @@ An identity put in context can appear like this:
     end:
 end
 ```
+and will parse to:
+```
+{
+    "Label": {
+        "key": "value",
+        "space": {
+            "key2": 123
+        }
+    }
+}
+```
 
-And it can be accessed in these ways:
+Identities can be accessed in these ways:
 
 - `->Label.key` (or for accessing only the value: `->Label.key&`)
 - `->Label:space.key` (or for accessing only the value: `->Label:space.key&`)
