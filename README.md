@@ -1,6 +1,6 @@
 ### Testing branch for "Identities"
 
-An identity is the LOON vay to make key value pairs.
+An identity is the LOON way to make key value pairs.
 
 The syntax of an identity is as following:
 
