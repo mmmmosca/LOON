@@ -28,4 +28,4 @@ And it can be accessed in these ways:
 - `->Label.key` (or for accessing only the value: `->Label.key&`)
 - `->Label:space.key` (or for accessing only the value: `->Label:space.key&`)
 
-Also i made sure to add type check, so that everything doesn't come as a string.
+Also i made sure to add type checking, so that everything doesn't come as a string.
