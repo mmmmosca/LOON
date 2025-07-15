@@ -1,4 +1,13 @@
-### Testing branch for "Identities"
+# Testing branch for "Identities"
+
+### TL;DR
+
+New features:
+- key-value pairing with `<->`
+- can be accessed with `->Label.key` (`->Label.key&` for accessing only the value) or `->Label:space.key` (`->Label:space.key&` for accessing only the value)
+- removed all the costrains with injection
+- type checking
+- better parsing
 
 An identity is the LOON way to make key value pairs.
 
@@ -36,7 +45,7 @@ Identities can be accessed in these ways:
 - `->Label.key` (or for accessing only the value: `->Label.key&`)
 - `->Label:space.key` (or for accessing only the value: `->Label:space.key&`)
 
-Also i made sure to add type checking, so that everything doesn't come as a string.
+I officially removed all the weird injection rules, allowing more freedom to the user other than a better parser that supports type checking, so that everything doesn't come as a string.
 
 Fun fact:
 the syntax of the injection operator (`<->`) was inspired by the chemical notation for reversible reactions
