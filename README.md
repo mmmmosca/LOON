@@ -29,6 +29,7 @@ An identity put in context can appear like this:
 end
 ```
 and will parse to:
+
 ```
 {
     "Label": {
@@ -46,6 +47,54 @@ Identities can be accessed in these ways:
 - `->Label:space.key` (or for accessing only the value: `->Label:space.key&`)
 
 I officially removed all the weird injection rules, allowing more freedom to the user other than a better parser that supports type checking, so that everything doesn't come as a string.
+
+It's also possible to modify identities when injected from other labels/spaces.
+
+Say we have a label called BaseInfo, that stores a temeplate of our data:
+
+```
+(BaseInfo)
+    phone_number <-> 123
+    email <-> "example@email.com"
+end
+```
+
+we can now inject the content of BaseInfo onto other lables to reuse that information:
+
+```
+(UserInfo)
+    ->BaseInfo&
+    phone_number <-> 9999999999
+    email <-> "fake123@gmail.com"
+end
+
+(User)
+    ->UserInfo&
+    name <-> "John Doe"
+    age <-> 21
+end
+```
+
+and the parses to this json:
+```
+{
+    "BaseInfo": {
+        "phone_number": 123,
+        "email": "example@email.com"
+    },
+    "UserInfo": {
+        "phone_number": 9999999999,
+        "email": "fake123@gmail.com"
+    },
+    "User": {
+        "phone_number": 9999999999,
+        "email": "fake123@gmail.com",
+        "name": "John Doe",
+        "age": 21
+    }
+}
+
+```
 
 Fun fact:
 the syntax of the injection operator (`<->`) was inspired by the chemical notation for reversible reactions
