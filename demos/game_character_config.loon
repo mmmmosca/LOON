@@ -1,0 +1,42 @@
+(CharacterBase)
+    name <-> "Unknown"
+    health <-> 100
+    :baseStats
+        strength <-> 10
+        agility <-> 10
+        intelligence <-> 10
+    end:
+end
+
+(Warrior)
+    ->CharacterBase.name
+    ->CharacterBase.health
+    name <-> "Grom"
+    health <-> 150
+    :stats
+    	->CharacterBase:baseStats.strength
+    	->CharacterBase:baseStats.agility
+    	->CharacterBase:baseStats.intelligence
+    	strenght <-> 20
+        endurance <-> 25
+    end:
+end
+
+(Mage)
+    ->CharacterBase.name
+    ->CharacterBase.health
+    name <-> "Merlin"
+    health <-> 80
+    :mageStats
+    	->CharacterBase:baseStats.strength
+    	->CharacterBase:baseStats.agility
+    	->CharacterBase:baseStats.intelligence
+    	intelligence <-> 25
+        mana <-> 50
+    end:
+end
+
+(Party)
+    ->Warrior
+    ->Mage
+end

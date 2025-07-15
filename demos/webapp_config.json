@@ -1,0 +1,48 @@
+{
+    "ThemeBase": {
+        "colorPrimary": "#3498db",
+        "colorSecondary": "#2ecc71",
+        "fontFamily": "Arial, sans-serif"
+    },
+    "DarkTheme": {
+        "colorPrimary": "#1abc9c",
+        "colorSecondary": "#16a085",
+        "fontFamily": "Arial, sans-serif"
+    },
+    "LightTheme": {
+        "colorPrimary": "#ecf0f1",
+        "colorSecondary": "#bdc3c7",
+        "fontFamily": "Arial, sans-serif"
+    },
+    "RoleAdmin": {
+        "canEdit": true,
+        "canDelete": true,
+        "canViewReports": true
+    },
+    "RoleUser": {
+        "canEdit": false,
+        "canDelete": false,
+        "canViewReports": true
+    },
+    "AppConfig": {
+        "theme": [
+            {
+                "colorPrimary": "#1abc9c",
+                "colorSecondary": "#16a085",
+                "fontFamily": "Arial, sans-serif"
+            }
+        ],
+        "roles": {
+            "RoleAdmin": {
+                "canEdit": true,
+                "canDelete": true,
+                "canViewReports": true
+            },
+            "RoleUser": {
+                "canEdit": false,
+                "canDelete": false,
+                "canViewReports": true
+            }
+        }
+    }
+}
