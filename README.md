@@ -1,13 +1,12 @@
 # LOON (Label Oriented Object Notation)
----
 
-LOON is a human-friendly, modular and extensible language for structuring data and transpiling it to JSON.
+>LOON is a human-friendly, modular and extensible language for structuring data and transpiling it to JSON.
 
 ---
 
 ## Syntax
 
-loon files (that end in .loon) have a basic structure, there are two hierarchies and key-value pairs along with some operators:
+LOON files (that end in .loon) have a basic structure, there are two hierarchies and key-value pairs along with some operators:
 - Labels (top-level)
 - Spaces (sub-level)
 - Identities (basic key value pairs)
@@ -47,7 +46,7 @@ Defining a space is similar to how you define a label, but instead of enclosing 
 end
 ```
 
-Like lables, they have to end with the end keyword.
+Like labels, they have to end with the end keyword.
 
 ### Identities
 
@@ -87,7 +86,7 @@ the syntax of the injection operator (`<->`) was inspired by the chemical notati
 
 ### Comments
 
-Loon allows to write comments by enclosing the a text between `<>`
+Loon allows to write comments by enclosing a text between `<>`
 
 `<this is a comment>`
 
@@ -97,7 +96,7 @@ There are three main operators:
 
 - `->`: injection operator
 
-- `<->`: identity operator (used for identities
+- `<->`: identity operator (used for identities)
 
 - `&`: dereference operator
 
@@ -114,7 +113,7 @@ This allows to either extract the content or value from a label/space or identit
 
 #### Injecting labels
 
-Taken this loon:
+Taken this LOON:
 
 ```
 (Label)
@@ -135,7 +134,7 @@ We can inject this label in these ways:
 end
 ```
 
-which transpiles to this json:
+which transpiles to this JSON:
 ```
 {
     "Label": {
@@ -187,7 +186,7 @@ We can inject the space this way:
 end
 ```
 
-And transpiles to this json:
+And transpiles to this JSON:
 ```
 {
     "Label": {
@@ -225,7 +224,7 @@ Say we have a label called BaseInfo, that stores a temeplate of our data:
 end
 ```
 
-we can now inject the content of BaseInfo onto other lables to reuse that information:
+we can now inject the content of BaseInfo onto other labels to reuse that information:
 
 ```
 (UserInfo)
@@ -241,7 +240,7 @@ end
 end
 ```
 
-and the transpiles to this json:
+and the transpiles to this JSON:
 ```
 {
     "BaseInfo": {
@@ -263,21 +262,24 @@ and the transpiles to this json:
 ```
 
 Injection can happen anywhere, at any time in your code, so it's possible to inject labels inside spaces, spaces in spaces, spaces in labels and labels in labels.
-As is now, the language doesn't feature any way of injecting anything into identites, but it will surely be a thing in the future.
+As it is, the language currently doesn't feature any way of injecting anything into identites, but it will surely be a thing in the future.
 
 ---
 
 ## Installation
 
-For installing loon you'll first need to clone the repository with this command:
+If you want to use the given JSON transpiler made in python, you can install the CLI tool.
+
+
+First you'll need to clone the repository with this command:
 
 `git clone https://github.com/mmmmosca/LOON`
 
-If you want to use the given JSON transpiler made in python, you can install the CLI tool with pip, using:
+And then use pip for installing the tool:
 
 `pip install .`
 
-Or add the -e switch to make edits to the transpiler without having to reinstall everything again you can use this command instead:
+You can add the -e switch to make edits to the transpiler without having to reinstall everything again:
 
-`pip instal -e .`
+`pip install -e .`
 
