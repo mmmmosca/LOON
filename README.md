@@ -1,5 +1,7 @@
 # LOON (Label Oriented Object Notation)
 
+![LOON Logo](https://github.com/mmmmosca/LOON/blob/main/loon/Logo.png)
+
 >LOON is a human-friendly, modular and extensible language for structuring data and transpiling it to JSON.
 
 ---
