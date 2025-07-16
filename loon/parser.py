@@ -60,7 +60,7 @@ def parse_loon_file(filename):
             current_label = None
 
         elif "=" in line:
-            k, v = map(str.strip, line.split("<->", 1))
+            k, v = map(str.strip, line.split("=", 1))
             val = infer_value_type(v)
             if insert_in_space:
                 blk = space_stack[current_space]
