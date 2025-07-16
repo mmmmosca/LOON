@@ -59,7 +59,7 @@ def parse_loon_file(filename):
             labels[current_label] = result
             current_label = None
 
-        elif "<->" in line:
+        elif "=" in line:
             k, v = map(str.strip, line.split("<->", 1))
             val = infer_value_type(v)
             if insert_in_space:
