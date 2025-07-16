@@ -1,31 +1,31 @@
 (ThemeBase)
-    colorPrimary <-> "#3498db"
-    colorSecondary <-> "#2ecc71"
-    fontFamily <-> "Arial, sans-serif"
+    colorPrimary = "#3498db"
+    colorSecondary = "#2ecc71"
+    fontFamily = "Arial, sans-serif"
 end
 
 (DarkTheme)
     ->ThemeBase&
-    colorPrimary <-> "#1abc9c"
-    colorSecondary <-> "#16a085"
+    colorPrimary = "#1abc9c"
+    colorSecondary = "#16a085"
 end
 
 (LightTheme)
     ->ThemeBase&
-    colorPrimary <-> "#ecf0f1"
-    colorSecondary <-> "#bdc3c7"
+    colorPrimary = "#ecf0f1"
+    colorSecondary = "#bdc3c7"
 end
 
 (RoleAdmin)
-    canEdit <-> true
-    canDelete <-> true
-    canViewReports <-> true
+    canEdit = true
+    canDelete = true
+    canViewReports = true
 end
 
 (RoleUser)
-    canEdit <-> false
-    canDelete <-> false
-    canViewReports <-> true
+    canEdit = false
+    canDelete = false
+    canViewReports = true
 end
 
 (AppConfig)
