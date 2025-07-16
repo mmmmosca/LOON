@@ -57,17 +57,17 @@ An identity is the LOON way to make key value pairs.
 The syntax of an identity is as following:
 
 
-`key <-> value`
+`key = value`
 
-This `<->` is called the "identity operator".
+This `=` is called the "identity operator".
 
 An identity put in context can appear like this:
 
 ```
 (Label)
-    key <-> "value"
+    key = "value"
     :space 
-        key2 <-> 123
+        key2 = 123
     end:
 end
 ```
@@ -83,8 +83,6 @@ and will transpile to:
     }
 }
 ```
-Fun fact:
-the syntax of the injection operator (`<->`) was inspired by the chemical notation for reversible reactions
 
 ### Comments
 
@@ -98,7 +96,7 @@ There are three main operators:
 
 - `->`: injection operator
 
-- `<->`: identity operator (used for identities)
+- `=`: identity operator (used for identities)
 
 - `&`: dereference operator
 
@@ -120,8 +118,8 @@ Taken this LOON:
 ```
 (Label)
     :space
-        name <-> "John Doe"
-        age <-> 21
+        name = "John Doe"
+        age = 21
     end:
 end
 
@@ -172,8 +170,8 @@ By taking the same example from before:
 ```
 (Label)
     :space
-        name <-> "John Doe"
-        age <-> 21
+        name = "John Doe"
+        age = 21
     end:
 end
 
@@ -221,8 +219,8 @@ Say we have a label called BaseInfo, that stores a temeplate of our data:
 
 ```
 (BaseInfo)
-    phone_number <-> 123
-    email <-> "example@email.com"
+    phone_number = 123
+    email = "example@email.com"
 end
 ```
 
@@ -231,14 +229,14 @@ we can now inject the content of BaseInfo onto other labels to reuse that inform
 ```
 (UserInfo)
     ->BaseInfo&
-    phone_number <-> 9999999999
-    email <-> "fake123@gmail.com"
+    phone_number = 9999999999
+    email = "fake123@gmail.com"
 end
 
 (User)
     ->UserInfo&
-    name <-> "John Doe"
-    age <-> 21
+    name = "John Doe"
+    age = 21
 end
 ```
 
