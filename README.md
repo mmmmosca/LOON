@@ -100,6 +100,8 @@ There are three main operators:
 
 - `&`: dereference operator
 
+- `@`: insertion operator
+
 ### Injection and dereference operator
 
 The biggest feature of LOON is the injection operator.
@@ -107,7 +109,7 @@ The biggest feature of LOON is the injection operator.
 It allows to take data from other labels/spaces and reuse it and modify it as you like.
 
 Injection takes this syntax:
-`->Label[:Space][.Identity][&]`
+`->Label[:Space][.IdentityKey][&]`
 
 This allows to either extract the content or value from a label/space or identity
 
@@ -262,14 +264,73 @@ and the transpiles to this JSON:
 ```
 
 Injection can happen anywhere, at any time in your code, so it's possible to inject labels inside spaces, spaces in spaces, spaces in labels and labels in labels.
-As it is, the language currently doesn't feature any way of injecting anything into identites, but it will surely be a thing in the future.
+
+You can also inject the content of labels/spaces and values of other identities, in identities.
+
+For doing this, enclose the reference in square brackets ("[]") when assigning a value to an identity.
+
+Here's the syntax:
+
+`key = [Label{:Space}{.IdentityKey}]`
+
+## Insertion Operator
+
+You can import the content of another LOON file by prefixing it's path with the insertion operator ("@").
+
+Here's the syntax:
+
+`@imported_file.loon`
+
+Let's say we have a file where we have a set of template information, let's call it `template.loon`.
+
+template.loon:
+```
+(InfoTemplate)
+   :userInfo
+        name = "Unknown"
+        age = 0
+        email = "example@email.com"
+   end:
+end
+```
+
+then in an other file you can import this template and then modify it's information to our needs.
+
+info.loon:
+```
+@template.loon
+
+(DisplayedInfo)
+    ->InfoTemplate:userInfo.name
+    ->InfoTemplate:userInfo.age
+    name = "mmmmosca"
+    age = 17
+end
+```
+
+Which parses to this JSON:
+
+```
+{
+    "InfoTemplate": {
+        "userInfo": {
+            "name": "Unknown",
+            "age": 0,
+            "email": "example@email.com"
+        }
+    },
+    "DisplayedInfo": {
+        "name": "mmmmosca",
+        "age": 17
+    }
+}
+```
 
 ---
 
 ## Installation
 
 If you want to use the given JSON transpiler made in python, you can install the CLI tool.
-
 
 First you'll need to clone the repository with this command:
 
