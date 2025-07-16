@@ -4,7 +4,7 @@
 <img src="https://github.com/mmmmosca/LOON/blob/main/loon/Logo.png" width="400" height="400">
 </div>
 
->LOON is a human-friendly, modular and extensible language for structuring data and transpiling it to JSON.
+>LOON is a high-level configuration language that compiles down to JSON
 
 ---
 
