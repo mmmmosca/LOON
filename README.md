@@ -12,7 +12,7 @@
 
 ### With pip or npm
 
-If you want to use the given JSON transpiler made in python, you can install it with this command:
+If you want to use the given JSON compiler made in python, you can install it with this command:
 
 `pip install loon-parser`
 
