@@ -73,7 +73,7 @@ An identity put in context can appear like this:
     end:
 end
 ```
-and will transpile to:
+and will compile to:
 
 ```
 {
@@ -138,7 +138,7 @@ We can inject this label in these ways:
 end
 ```
 
-which transpiles to this JSON:
+which compiles to this JSON:
 ```
 {
     "Label": {
@@ -190,7 +190,7 @@ We can inject the space this way:
 end
 ```
 
-And transpiles to this JSON:
+And compiles to this JSON:
 ```
 {
     "Label": {
@@ -244,7 +244,7 @@ end
 end
 ```
 
-and the transpiles to this JSON:
+and then compiles to this JSON:
 ```
 {
     "BaseInfo": {
@@ -310,7 +310,7 @@ info.loon:
 end
 ```
 
-Which parses to this JSON:
+Which compiles to this JSON:
 
 ```
 {
