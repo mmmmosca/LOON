@@ -8,6 +8,30 @@
 
 ---
 
+## Installation
+
+If you want to use the given JSON transpiler made in python, you can install the CLI tool.
+
+You can either run this command:
+
+`pip install loon-parser`
+
+Or you can build from source by using the instructions below:
+
+1. First you'll need to clone the repository with this command:
+
+`git clone https://github.com/mmmmosca/LOON`
+
+2. And then use pip for installing the tool:
+
+`pip install .`
+
+You can add the -e switch to make edits to the transpiler without having to reinstall everything again:
+
+`pip install -e .`
+
+---
+
 ## Syntax
 
 LOON files (that end in .loon) have a basic structure, there are two hierarchies and key-value pairs along with some operators:
@@ -327,22 +351,4 @@ Which compiles to this JSON:
     }
 }
 ```
-
----
-
-## Installation
-
-If you want to use the given JSON transpiler made in python, you can install the CLI tool.
-
-First you'll need to clone the repository with this command:
-
-`git clone https://github.com/mmmmosca/LOON`
-
-And then use pip for installing the tool:
-
-`pip install .`
-
-You can add the -e switch to make edits to the transpiler without having to reinstall everything again:
-
-`pip install -e .`
 
