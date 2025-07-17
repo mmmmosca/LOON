@@ -1,0 +1,28 @@
+{
+  "name": "loon-parser",
+  "version": "1.0.0",
+  "description": "A parser for the LOON (Label Oriented Object Notation) langauge",
+  "main": "loonParser.js",
+  "bin": {
+    "loon-js": "./loon.js"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "loon",
+    "parser",
+    "json-alternative",
+    "data-format",
+    "cli"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "loon-parser": "^1.0.0",
+    "minimist": "^1.2.8"
+  }
+}
