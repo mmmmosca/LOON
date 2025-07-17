@@ -1,7 +1,7 @@
 # LOON (Label Oriented Object Notation)
 
 <div align="center">
-<img src="https://github.com/mmmmosca/LOON/blob/main/loon/Logo.png" width="400" height="400">
+<img src="https://github.com/mmmmosca/LOON/blob/0a6c62862645b1c7eb249a0d0cf098f2e605eb56/Python/Logo.png" width="400" height="400">
 </div>
 
 >LOON is a high-level configuration language that compiles down to JSON
