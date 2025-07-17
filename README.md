@@ -94,7 +94,7 @@ Loon allows to write comments by enclosing a text between `<>`
 
 ## Operators
 
-There are three main operators:
+There are four main operators:
 
 - `->`: injection operator
 
