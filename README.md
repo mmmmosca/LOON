@@ -18,7 +18,7 @@ If you want to use the given JSON compiler made in python, you can install it wi
 
 Or with npm for the JavaScript version:
 
-`npm install loon-parser`
+`npm install -g loon-parser`
 
 then run either one of these two commands:
 `loon input.loon -o output.json`
