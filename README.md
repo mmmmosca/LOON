@@ -59,19 +59,33 @@ LOON files (that end in .loon) have a basic structure, there are two hierarchies
 
 ### Labels
 
-Labels serve as the main structure of the language, they are essentially containers for raw data, identities and spaces and other labels (we'll discuss about this later).
+Labels serve as the main structure of the language, they are essentially containers for identities, spaces and other labels (we'll discuss about this later).
 
 A label is defined like this:
 ```
 (Label)
-    "string"
-    true
-    123
-    3.14
+    string = "string"
+    bool = true
+    int = 123
+    float = 3.14
 end
 ```
 
-Every label must end with the end keyword or it will not be parsed correctly.
+You can also mark a label as hidden, by prefixing the open parenthesis with a % (called the "cloak operator").
+
+An hidden label will be treated by the parser as a normal label, but on the final output it won't be shown, this can drastically improve the readability of the output JSON.
+
+A hidden label can be defined like this:
+```
+%(HiddenLabel)
+    string = "string"
+    bool = true
+    int = 123
+    float = 3.14
+end
+```
+
+Every label must end with the "end" keyword or it will not be parsed correctly.
 
 ### Spaces
 
@@ -91,7 +105,9 @@ Defining a space is similar to how you define a label, but instead of enclosing 
 end
 ```
 
-Like labels, they have to end with the end keyword.
+A space defined in a hidden label will also be hidden with it.
+
+Like labels, they have to end with the "end:" keyword.
 
 ### Identities
 
@@ -140,6 +156,8 @@ There are four main operators:
 - `->`: injection operator
 
 - `=`: identity operator (used for identities)
+
+- `%` cloak operator (used for hidden labels)
 
 - `&`: dereference operator
 
@@ -315,6 +333,8 @@ For doing this, enclose the reference in square brackets ("[]") when assigning a
 Here's the syntax:
 
 `key = [Label{:Space}{.IdentityKey}]`
+
+> PS: The syntax for injecting hidden labels and spaces is the same as other labels and spaces. However it's still not possible to do this with referencing in identities yet.
 
 ## Insertion Operator
 
