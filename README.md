@@ -334,7 +334,7 @@ Here's the syntax:
 
 `key = [Label{:Space}{.IdentityKey}]`
 
-> PS: The syntax for injecting hidden labels and spaces is the same as other labels and spaces. And the same goes for Injecting inside identities
+> Note: The syntax for injecting hidden labels and spaces is the same as other labels and spaces. And the same goes for Injecting inside identities
 
 ## Insertion Operator
 
