@@ -151,7 +151,7 @@ Loon allows to write comments by enclosing a text between `<>`
 
 ## Operators
 
-There are five operators:
+There are six operators:
 
 - `->`: injection operator
 
@@ -162,6 +162,8 @@ There are five operators:
 - `&`: dereference operator
 
 - `@`: insertion operator
+
+- `$`: key-reference operator
 
 ### Injection and dereference operator
 
@@ -334,7 +336,20 @@ Here's the syntax:
 
 `key = [Label{:Space}{.IdentityKey}]`
 
-> Note: The syntax for injecting hidden labels and spaces is the same as other labels and spaces. And the same goes for Injecting inside identities
+And you can also reference any other identity key with the "Key-reference operator" ($).
+
+You effectively do this:
+```
+->Label.key
+key = "new value"
+```
+
+But in a single line like this:
+```
+$Label.key = "new value"
+```
+
+> Note: The syntax for injecting hidden labels and spaces is the same as other labels and spaces. And the same goes for Injecting inside identities or referencing identity keys
 
 ## Insertion Operator
 
