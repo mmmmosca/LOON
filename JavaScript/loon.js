@@ -25,12 +25,14 @@ function main() {
   }
 
   try {
-    const parsed = parseLoonFile(inputFile); // Your existing parse function
+    // Grab only the public labels so hiddenLabels never show in CLI output
+    const { labels } = parseLoonFile(inputFile);
+
     if (args.output) {
-      fs.writeFileSync(args.output, JSON.stringify(parsed, null, 2), "utf8");
+      fs.writeFileSync(args.output, JSON.stringify(labels, null, 2), "utf8");
       console.log(`Parsed output saved to ${args.output}`);
     } else {
-      console.log(JSON.stringify(parsed, null, 2));
+      console.log(JSON.stringify(labels, null, 2));
     }
   } catch (err) {
     console.error("Error parsing LOON file:", err.message);
