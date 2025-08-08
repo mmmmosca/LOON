@@ -10,42 +10,33 @@
 
 ## Installation
 
-### With pip or npm
+⚠️THE PYTHON VERSION IS NOW DEPRECATED AND COULD NOT WORK AS INTENDED⚠️
 
-If you want to use the given JSON compiler made in python, you can install it with this command:
+### With npm
 
-`pip install loon-parser`
-
-Or with npm for the JavaScript version:
+If you want to use the given JSON compiler made in JavaScript, you can install it with this command:
 
 `npm install -g loon-parser`
 
-then run either one of these two commands:
-`loon input.loon -o output.json`
+then this command:
+
 `loon-js input.loon -o output.json`
 
 ### From source
 
 You can build from source by using the instructions below:
 
-#### Python
-
 1. First you'll need to clone the repository with this command:
 
-`git clone https://github.com/mmmmosca/LOON/Python`
+`git clone https://github.com/mmmmosca/LOON/`
 
-2. And then use pip for installing the tool:
+2. And then use npm for installing the tool inside the "JavaScript" folder:
 
-`pip install .`
+`npm install -g .`
 
-You can add the -e switch to make edits to the transpiler without having to reinstall everything again:
+If you want it to be editable use this command:
 
-`pip install -e .`
-
-#### JS
-
-1. `git clone https://github.com/mmmmosca/LOON/JavaScript`
-2. `npm install -g .` or if you want it to be editable use this command in your cloned folder `npm link`
+`npm link`
 
 ---
 
