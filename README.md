@@ -4,7 +4,7 @@
 <img src="https://github.com/mmmmosca/LOON/blob/0a6c62862645b1c7eb249a0d0cf098f2e605eb56/Python/Logo.png" width="400" height="400">
 </div>
 
->LOON is a high-level configuration language that compiles down to JSON
+>LOON is a high-level configuration language that parses to JSON
 
 ---
 
