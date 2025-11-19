@@ -14,7 +14,7 @@
 
 ### With npm
 
-If you want to use the given JSON compiler made in JavaScript, you can install it with this command:
+If you want to use the given JSON parser made in JavaScript, you can install it with this command:
 
 `npm install -g loon-parser`
 
@@ -121,7 +121,7 @@ An identity put in context can appear like this:
     end:
 end
 ```
-and will compile to:
+and will parse to:
 
 ```
 {
@@ -190,7 +190,7 @@ We can inject this label in these ways:
 end
 ```
 
-which compiles to this JSON:
+which parses to this JSON:
 ```
 {
     "Label": {
@@ -242,7 +242,7 @@ We can inject the space this way:
 end
 ```
 
-And compiles to this JSON:
+And parses to this JSON:
 ```
 {
     "Label": {
@@ -296,7 +296,7 @@ end
 end
 ```
 
-and then compiles to this JSON:
+and then parses to this JSON:
 ```
 {
     "BaseInfo": {
@@ -377,7 +377,7 @@ info.loon:
 end
 ```
 
-Which compiles to this JSON:
+Which parses to this JSON:
 
 ```
 {
