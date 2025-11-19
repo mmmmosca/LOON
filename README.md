@@ -82,7 +82,7 @@ Every label must end with the "end" keyword or it will not be parsed correctly.
 
 A space is a sub-level structure that live inside labels.
 
-As well as labels they can contain raw data, identities and other spaces or labels (we'll also discuss about this later on).
+They can contain raw data, identities and other spaces or labels (we'll also discuss about this later on).
 
 Defining a space is similar to how you define a label, but instead of enclosing the name of a space between brackets you prefix it with a colon (':'):
 ```
