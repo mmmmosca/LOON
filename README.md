@@ -16,7 +16,7 @@ If you desire to install Python's version of LOON you may use pip:
 
 `pip install loon-parser`
 
-Then you may use the command `loon` to use the parser by the cli
+Then you may use the command `loon -h` to see how to use the parser by the cli.
 
 ### With npm
 
