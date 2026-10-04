@@ -10,7 +10,13 @@
 
 ## Installation
 
-⚠️THE PYTHON VERSION IS NOW DEPRECATED AND COULD NOT WORK AS INTENDED⚠️
+### With pip
+
+If you desire to install Python's version of LOON you may use pip:
+
+`pip install loon-parser`
+
+Then you may use the command `loon` to use the parser by the cli
 
 ### With npm
 
@@ -22,21 +28,6 @@ then this command:
 
 `loon-js input.loon -o output.json`
 
-### From source
-
-You can build from source by using the instructions below:
-
-1. First you'll need to clone the repository with this command:
-
-`git clone https://github.com/mmmmosca/LOON/`
-
-2. And then use npm for installing the tool inside the "JavaScript" folder:
-
-`npm install -g .`
-
-If you want it to be editable use this command:
-
-`npm link`
 
 ---
 
